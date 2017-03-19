@@ -80,5 +80,4 @@ public class HourlyEmployee extends Employee {
         return hours * wage;
     }
 
-    // TODO: Continue exercies from 3.
 }
