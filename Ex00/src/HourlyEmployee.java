@@ -64,14 +64,14 @@ public class HourlyEmployee extends Employee {
 
         HourlyEmployee hourlyEmployee = (HourlyEmployee) obj;
 
-        return  this.equals(hourlyEmployee) &&
+        return  super.equals(hourlyEmployee) &&
                 Integer.compare(getHours(), hourlyEmployee.getHours())==0 &&
                 Double.compare(getWage(), hourlyEmployee.getWage())==0;
     }
 
     @Override
     public String toString() {
-        return this.toString() + Integer.toString(getHours()) + " " +
+        return super.toString() + Integer.toString(getHours()) + " " +
                 Double.toString(getWage());
     }
 
