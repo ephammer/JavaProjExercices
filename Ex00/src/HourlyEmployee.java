@@ -3,10 +3,10 @@
  */
 public class HourlyEmployee extends Employee {
 
-    private int hours;
+    private double hours;
     private double wage;
 
-    public HourlyEmployee(String firstName, String lastName, int id, int hours, double wage)
+    public HourlyEmployee(String firstName, String lastName, int id, double hours, double wage)
     {
         super(firstName,lastName,id);
 
@@ -29,7 +29,7 @@ public class HourlyEmployee extends Employee {
         }
     }
 
-    public void setHours(int hours) {
+    public void setHours(double hours) {
         try {
             this.hours = hours;
         } catch (Exception e) {
@@ -45,7 +45,7 @@ public class HourlyEmployee extends Employee {
         }
     }
 
-    public int getHours() {
+    public double getHours() {
         return hours;
     }
 
@@ -65,13 +65,13 @@ public class HourlyEmployee extends Employee {
         HourlyEmployee hourlyEmployee = (HourlyEmployee) obj;
 
         return  super.equals(hourlyEmployee) &&
-                Integer.compare(getHours(), hourlyEmployee.getHours())==0 &&
+                Double.compare(getHours(), hourlyEmployee.getHours())==0 &&
                 Double.compare(getWage(), hourlyEmployee.getWage())==0;
     }
 
     @Override
     public String toString() {
-        return super.toString() + Integer.toString(getHours()) + " " +
+        return super.toString() + Double.toString(getHours()) + " " +
                 Double.toString(getWage());
     }
 

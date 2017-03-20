@@ -7,13 +7,13 @@ public class Payroll {
         Employee[] employeeArray = new Employee[3];
 
         HourlyEmployee hourlyEmployee =
-                new HourlyEmployee( "Karen", "Price", "222-22-2222", 16.75, 40 );
+                new HourlyEmployee( "Karen", "Price", 0, 16.75, 40 );
 
         CommissionEmployee commissionEmployee =
-                new CommissionEmployee( "Sue", "Jones", "333-33-3333", 10000, .06 );
+                new CommissionEmployee( "Sue", "Jones", 1, 10000, .06 );
 
         BasePlusCommissionEmployee basePlusCommissionEmployee =
-                new BasePlusCommissionEmployee("Bob", "Lewis", "444-44-4444", 5000, .04, 300 );
+                new BasePlusCommissionEmployee("Bob", "Lewis", 2, 5000, .04, 300 );
 
         employeeArray[ 0 ] = hourlyEmployee;
         employeeArray[ 1 ] = commissionEmployee;

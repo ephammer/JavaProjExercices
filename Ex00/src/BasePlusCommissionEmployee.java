@@ -1,7 +1,7 @@
 /**
  * Created by Admin on 19/03/2017.
  */
-public class BasePlusCommissionEmployee extends ComissionEmployee {
+public class BasePlusCommissionEmployee extends CommissionEmployee {
 
     private double baseSalary;
 
@@ -13,9 +13,10 @@ public class BasePlusCommissionEmployee extends ComissionEmployee {
 
     public BasePlusCommissionEmployee(String firstName, String lastName, int id, int grossSales, double commision, float baseSalary)
     {
+        super(firstName,lastName,id,grossSales,commision);
+
         try
         {
-            super(firstName,lastName,id,grossSales,commision);
             setBaseSalary(baseSalary);
         }
         catch (Exception e)
