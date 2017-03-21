@@ -33,4 +33,49 @@ public class Point3D extends Point2D {
     public void setzCoordinate(Coordinate zCoordinate) {
         this.zCoordinate = zCoordinate;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Point3D)) return false;
+        if (!super.equals(o)) return false;
+
+        Point3D point3D = (Point3D) o;
+
+        return getzCoordinate() != null ? getzCoordinate().equals(point3D.getzCoordinate()) : point3D.getzCoordinate() == null;
+    }
+
+    @Override
+    public String toString() {
+        return  "Point3D{" +
+                super.toString() +
+                "zCoordinate=" + zCoordinate +
+                '}';
+    }
+
+    public Point3D add(Point3D point3D)
+    {
+        this.setxCoordinate(this.getxCoordinate().add(point3D.getxCoordinate()));
+        this.setyCoordinate(this.getyCoordinate().add(point3D.getyCoordinate()));
+        zCoordinate.add(point3D.getzCoordinate());
+
+        return this;
+    }
+
+    public Point3D Substrct(Point3D point3D)
+    {
+        this.setxCoordinate(this.getxCoordinate().Substrct(point3D.getxCoordinate()));
+        this.setyCoordinate(this.getyCoordinate().Substrct(point3D.getyCoordinate()));
+        zCoordinate.Substrct(point3D.getzCoordinate());
+
+        return this;
+    }
+
+    public double distance(Point3D point3D)
+    {
+        return Math.sqrt(
+                Math.pow(getxCoordinate().getPoint() - point3D.getxCoordinate().getPoint(), 2) +
+                        Math.pow(getyCoordinate().getPoint() - point3D.getyCoordinate().getPoint(), 2) +
+                        Math.pow(getzCoordinate().getPoint() - point3D.getzCoordinate().getPoint(), 2));
+    }
 }
