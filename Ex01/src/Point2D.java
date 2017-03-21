@@ -51,4 +51,17 @@ public class Point2D {
                 ", yCoordinate=" + yCoordinate +
                 '}';
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Point2D)) return false;
+
+        Point2D point2D = (Point2D) o;
+
+        if (getxCoordinate() != null ? !getxCoordinate().equals(point2D.getxCoordinate()) : point2D.getxCoordinate() != null)
+            return false;
+        return getyCoordinate() != null ? getyCoordinate().equals(point2D.getyCoordinate()) : point2D.getyCoordinate() == null;
+    }
+
 }
