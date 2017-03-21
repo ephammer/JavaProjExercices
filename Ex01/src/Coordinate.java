@@ -38,6 +38,7 @@ public class Coordinate {
         }
     }
 
+
     public String toString()
     {
         return "single point: " + getSinglePoint();
