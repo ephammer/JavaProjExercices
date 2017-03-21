@@ -7,7 +7,13 @@ public class Vector {
     private Point3D point3D;
 
     public Vector(Point3D point3D) {
+        origin = new Point3D();
         this.point3D = point3D;
+    }
+
+    public Vector(Coordinate xCoordinate, Coordinate yCoordinate, Coordinate zCoordinate) {
+        origin = new Point3D();
+        this.point3D = new Point3D(xCoordinate,yCoordinate,zCoordinate);
     }
 
     public Point3D getPoint3D() {
@@ -42,6 +48,42 @@ public class Vector {
         return this;
     }
 
+    public double length()
+    {
+        return origin.distance(point3D);
+    }
+
+    public Vector narmol()
+    {
+        return this.scalarMult(1/length());
+    }
+
+    public Vector crossProduct(Vector vector)
+    {
+        Vector newVector;
+
+        Coordinate xCoordinate = new Coordinate(
+                (this.getPoint3D().getyCoordinate().getPoint()*
+                vector.getPoint3D().getzCoordinate().getPoint()) -
+                (this.getPoint3D().getzCoordinate().getPoint()*
+                        vector.getPoint3D().getyCoordinate().getPoint()));
+
+        Coordinate yCoordinate = new Coordinate(
+                (this.getPoint3D().getzCoordinate().getPoint()*
+                vector.getPoint3D().getxCoordinate().getPoint()) -
+                        (this.getPoint3D().getxCoordinate().getPoint()*
+                                vector.getPoint3D().getzCoordinate().getPoint()));
+
+        Coordinate zCoordinate = new Coordinate(
+                (this.getPoint3D().getxCoordinate().getPoint()*
+                vector.getPoint3D().getyCoordinate().getPoint()) -
+                        (this.getPoint3D().getyCoordinate().getPoint()*
+                                vector.getPoint3D().getxCoordinate().getPoint()));
+        newVector = new Vector(xCoordinate,yCoordinate,zCoordinate);
+
+        return newVector;
+
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,5 +93,6 @@ public class Vector {
 
         return getPoint3D() != null ? getPoint3D().equals(vector.getPoint3D()) : vector.getPoint3D() == null;
     }
+
 
 }
