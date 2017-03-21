@@ -3,16 +3,16 @@
  */
 public class Coordinate {
 
-    private double singlePoint;
+    private double point;
 
     public Coordinate()
     {
-        setSinglePoint(0);
+        setPoint(0);
     }
 
-    public Coordinate(double singlePoint) {
+    public Coordinate(double point) {
         try {
-            setSinglePoint(singlePoint);
+            setPoint(point);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -21,26 +21,27 @@ public class Coordinate {
     public Coordinate(Coordinate coordinate){
         try
         {
-            coordinate.setSinglePoint(this.getSinglePoint());
+            coordinate.setPoint(this.getPoint());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-    public double getSinglePoint() {
-        return singlePoint;
+    public double getPoint() {
+        return point;
     }
 
-    public void setSinglePoint(double singlePoint) {
+    public void setPoint(double point) {
         try {
-            this.singlePoint = singlePoint;
+            this.point = point;
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-
-    public String toString()
-    {
-        return "single point: " + getSinglePoint();
+    @Override
+    public String toString() {
+        return "Coordinate{" +
+                "point=" + point +
+                '}';
     }
 }
