@@ -1,3 +1,5 @@
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 /**
  * Created by kid0n on 21/03/2017.
  */
@@ -11,9 +13,33 @@ public class Vector {
         this.point3D = point3D;
     }
 
+    public Point3D getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(Point3D origin) {
+        this.origin = origin;
+    }
+
     public Vector(Coordinate xCoordinate, Coordinate yCoordinate, Coordinate zCoordinate) {
         origin = new Point3D();
         this.point3D = new Point3D(xCoordinate,yCoordinate,zCoordinate);
+    }
+
+    public Vector()
+    {
+        origin = new Point3D();
+        point3D = new Point3D();
+    }
+
+    public Vector(Point3D origin, Point3D point3D) {
+        this.origin = origin;
+        this.point3D = point3D;
+    }
+
+    public Vector(Vector vector)
+    {
+        this.setPoint3D(vector.getPoint3D());
     }
 
     public Point3D getPoint3D() {
