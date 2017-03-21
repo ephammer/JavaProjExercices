@@ -16,4 +16,12 @@ public class Ray extends Vector {
         setOrigin(ray.getOrigin());
         setPoint3D(ray.getPoint3D());
     }
+
+    @Override
+    public String toString() {
+        return "Ray{ "
+    + super.toString() +
+                "}";
+    }
+
 }
