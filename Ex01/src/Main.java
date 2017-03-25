@@ -7,6 +7,8 @@ public class Main {
     public static void main(String[] args) {
 
         // TODO: Create instances of dfierent classes for test purposes
-        // dfsv fvsd
+        Coordinate x = new Coordinate(3);
+        Coordinate y = new Coordinate(2.5);
+        x.compareTo(y);
     }
 }

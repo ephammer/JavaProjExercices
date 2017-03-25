@@ -120,5 +120,11 @@ public class Vector {
         return getPoint3D() != null ? getPoint3D().equals(vector.getPoint3D()) : vector.getPoint3D() == null;
     }
 
-
+    public int compareTo(Vector vector)
+    {
+        if(this.getOrigin().compareTo(vector.getOrigin()) == 0 )
+        {
+            if(this.getPoint3D().compareTo(vector.getPoint3D()) == 0) return 0;
+        }
+    }
 }

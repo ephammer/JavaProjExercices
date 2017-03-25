@@ -34,15 +34,17 @@ public class Point3D extends Point2D {
         this.zCoordinate = zCoordinate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Point3D)) return false;
-        if (!super.equals(o)) return false;
+    public int compareTo(Point3D point3D)
+    {
+        Point2D point2D = new Point2D(point3D.getxCoordinate(),point3D.getyCoordinate());
 
-        Point3D point3D = (Point3D) o;
-
-        return getzCoordinate() != null ? getzCoordinate().equals(point3D.getzCoordinate()) : point3D.getzCoordinate() == null;
+        if(this.compareTo(point2D) == 0)
+        {
+            if(this.getzCoordinate().compareTo(point3D.getzCoordinate()) == 0)  return 0;
+            if(this.getzCoordinate().compareTo(point3D.getzCoordinate()) == -1) return -1;
+        }
+        if(this.compareTo(point2D) == -1) return -1;
+        return 1;
     }
 
     @Override

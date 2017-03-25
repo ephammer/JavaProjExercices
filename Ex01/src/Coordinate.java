@@ -45,14 +45,11 @@ public class Coordinate {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Coordinate)) return false;
-
-        Coordinate that = (Coordinate) o;
-
-        return Double.compare(that.getPoint(), getPoint()) == 0;
+    public int compareTo(Coordinate coordinate)
+    {
+        if (this.getPoint() == coordinate.getPoint())   return 0;
+        else if (this.getPoint() < coordinate.getPoint())   return -1;
+        else return 1;
     }
 
     public Coordinate add(Coordinate coordinate)

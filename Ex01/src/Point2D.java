@@ -52,16 +52,13 @@ public class Point2D {
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Point2D)) return false;
-
-        Point2D point2D = (Point2D) o;
-
-        if (getxCoordinate() != null ? !getxCoordinate().equals(point2D.getxCoordinate()) : point2D.getxCoordinate() != null)
-            return false;
-        return getyCoordinate() != null ? getyCoordinate().equals(point2D.getyCoordinate()) : point2D.getyCoordinate() == null;
+    public int compareTo(Point2D point2D) {
+        if(this.getxCoordinate().compareTo(point2D.getxCoordinate()) == 0 )
+        {
+            if(this.getyCoordinate().compareTo(point2D.getyCoordinate()) == 0)  return 0;
+            if(this.getyCoordinate().compareTo(point2D.getyCoordinate()) == -1) return -1;
+        }
+        if(this.getxCoordinate().compareTo(point2D.getxCoordinate()) == -1) return -1;
+        else return 1;
     }
-
 }
