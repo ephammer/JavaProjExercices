@@ -125,6 +125,9 @@ public class Vector {
         if(this.getOrigin().compareTo(vector.getOrigin()) == 0 )
         {
             if(this.getPoint3D().compareTo(vector.getPoint3D()) == 0) return 0;
+            if(this.getPoint3D().compareTo(vector.getPoint3D()) == -1) return -1;
         }
+        if(this.getOrigin().compareTo(vector.getOrigin()) == -1) return -1;
+        return 1;
     }
 }
