@@ -1,12 +1,18 @@
+package primitives;
+
+import primitives.Coordinate;
+import primitives.Point2D;
+import primitives.Point3D;
+import primitives.Vector;
+
 /**
  * Created by kid0n on 21/03/2017.
  */
 public class Main {
 
-
     public static void main(String[] args) {
 
-        // TODO: Create instances of dfierent classes for test purposes
+        // TODO: Create instances of different classes for test purposes
         Coordinate x = new Coordinate();
         Coordinate y = new Coordinate(2.5);
         Coordinate z = new Coordinate(7);
@@ -32,15 +38,11 @@ public class Main {
         cArray[5] = r;
 
         for(Coordinate c : cArray)
-        {
             System.out.println(c.toString());
-        }
 
         System.out.println(xy.toString());
         System.out.println(xyz.toString());
         System.out.println(pqr.toString());
         System.out.println(v.toString());
-
-
     }
 }

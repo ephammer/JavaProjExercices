@@ -1,3 +1,5 @@
+package primitives;
+
 /**
  * Created by kid0n on 21/03/2017.
  */
