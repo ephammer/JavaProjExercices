@@ -21,7 +21,7 @@ public class Coordinate {
     public Coordinate(Coordinate coordinate){
         try
         {
-            coordinate.setPoint(this.getPoint());
+            this.setPoint(coordinate.getPoint());
         } catch (Exception e) {
             e.printStackTrace();
         }

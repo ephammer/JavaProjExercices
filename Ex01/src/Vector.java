@@ -5,6 +5,14 @@ import org.omg.CORBA.PUBLIC_MEMBER;
  */
 public class Vector {
 
+    @Override
+    public String toString() {
+        return "Vector{" +
+                "origin=" + origin +
+                ", point3D=" + point3D +
+                '}';
+    }
+
     private Point3D origin;
     private Point3D point3D;
 
