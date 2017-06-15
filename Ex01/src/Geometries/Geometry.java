@@ -1,3 +1,7 @@
+package Geometries;
+
+import Primitives.Vector;
+
 import java.awt.*;
 
 /**
@@ -18,5 +22,12 @@ public class Geometry {
     public Vector getNormal(Vector vector)
     {
         return vector.narmol();
+    }
+
+    @Override
+    public String toString() {
+        return "Geometries.Geometry{" +
+                "mColor=" + mColor +
+                '}';
     }
 }

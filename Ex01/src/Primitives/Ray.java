@@ -1,3 +1,5 @@
+package Primitives;
+
 /**
  * Created by kid0n on 21/03/2017.
  */
@@ -19,7 +21,7 @@ public class Ray extends Vector {
 
     @Override
     public String toString() {
-        return "Ray{ "
+        return "Primitives.Ray{ "
     + super.toString() +
                 "}";
     }

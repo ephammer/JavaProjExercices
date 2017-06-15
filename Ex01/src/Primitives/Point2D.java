@@ -1,3 +1,5 @@
+package Primitives;
+
 /**
  * Created by Emmanuel Elnekave on 20/03/2017.
  */
@@ -46,7 +48,7 @@ public class Point2D {
 
     @Override
     public String toString() {
-        return "Point2D{" +
+        return "Primitives.Point2D{" +
                 "xCoordinate=" + xCoordinate +
                 ", yCoordinate=" + yCoordinate +
                 '}';

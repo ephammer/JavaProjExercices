@@ -1,4 +1,4 @@
-import org.omg.CORBA.PUBLIC_MEMBER;
+package Primitives;
 
 /**
  * Created by kid0n on 21/03/2017.
@@ -121,4 +121,11 @@ public class Vector {
     }
 
 
+    @Override
+    public String toString() {
+        return "Primitives.Vector{" +
+                "origin=" + origin +
+                ", point3D=" + point3D +
+                '}';
+    }
 }

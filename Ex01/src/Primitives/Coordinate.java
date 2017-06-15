@@ -1,3 +1,5 @@
+package Primitives;
+
 /**
  * Created by Emmanuel Elnekave on 20/03/2017.
  */
@@ -40,7 +42,7 @@ public class Coordinate {
 
     @Override
     public String toString() {
-        return "Coordinate{" +
+        return "Primitives.Coordinate{" +
                 "point=" + point +
                 '}';
     }

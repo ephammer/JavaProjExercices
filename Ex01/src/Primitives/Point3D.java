@@ -1,3 +1,5 @@
+package Primitives;
+
 /**
  * Created by kid0n on 21/03/2017.
  */
@@ -47,7 +49,7 @@ public class Point3D extends Point2D {
 
     @Override
     public String toString() {
-        return  "Point3D{" +
+        return  "Primitives.Point3D{" +
                 super.toString() +
                 "zCoordinate=" + zCoordinate +
                 '}';
