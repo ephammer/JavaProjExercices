@@ -1,7 +1,7 @@
 package Primitives;
 
 /**
- * Created by kid0n on 21/03/2017.
+ * Created by ehammer on 21/03/2017.
  */
 public class Point3D extends Point2D {
 
@@ -36,16 +36,15 @@ public class Point3D extends Point2D {
         this.zCoordinate = zCoordinate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Point3D)) return false;
-        if (!super.equals(o)) return false;
 
-        Point3D point3D = (Point3D) o;
+    public int compareTo(Point3D point3D) {
 
-        return getzCoordinate() != null ? getzCoordinate().equals(point3D.getzCoordinate()) : point3D.getzCoordinate() == null;
+        if (((Point2D)this).compareTo((Point2D)point3D) == 0)
+            if (this.zCoordinate.compareTo(point3D.getzCoordinate()) == 0)
+                return 0;
+        return 1;
     }
+
 
     @Override
     public String toString() {
@@ -63,6 +62,13 @@ public class Point3D extends Point2D {
 
         return this;
     }
+    public void add(Vector vector) {
+
+        this.getxCoordinate().add(vector.getOrigin().getxCoordinate());
+        this.getyCoordinate().add(vector.getOrigin().getyCoordinate());
+        this.getzCoordinate().add(vector.getOrigin().getzCoordinate());
+
+    }
 
     public Point3D Substrct(Point3D point3D)
     {
@@ -72,6 +78,14 @@ public class Point3D extends Point2D {
 
         return this;
     }
+    public void Substrct(Vector vector) {
+
+        this.getxCoordinate().Substrct(vector.getOrigin().getxCoordinate());
+        this.getyCoordinate().Substrct(vector.getOrigin().getyCoordinate());
+        this.getzCoordinate().Substrct(vector.getOrigin().getzCoordinate());
+
+    }
+
 
     public double distance(Point3D point3D)
     {

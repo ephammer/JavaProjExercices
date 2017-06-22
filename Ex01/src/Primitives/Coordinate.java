@@ -3,7 +3,7 @@ package Primitives;
 /**
  * Created by Emmanuel Elnekave on 20/03/2017.
  */
-public class Coordinate {
+public class Coordinate implements Comparable<Coordinate> {
 
     private double point;
 
@@ -68,5 +68,10 @@ public class Coordinate {
     {
         point -= coordinate.getPoint();
         return this;
+    }
+
+    @Override
+    public int compareTo(Coordinate coordinate) {
+        return Double.compare(this.point, coordinate.point);
     }
 }

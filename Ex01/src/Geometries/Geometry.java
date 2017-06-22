@@ -1,33 +1,41 @@
 package Geometries;
 
+import Primitives.Material;
+import Primitives.Point3D;
+import Primitives.Ray;
 import Primitives.Vector;
 
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 /**
- * Created by kid0n on 21/03/2017.
+ * Created by ehammer on 21/03/2017.
  */
-public class Geometry {
+public abstract class Geometry {
 
-    private Color mColor;
+    private Material _material = new Material();
 
-    public Color getmColor() {
-        return mColor;
+    private Color _emmission = new Color(0, 0, 0);
+
+    public Color get_emmission() {
+        return _emmission;
     }
 
-    public void setmColor(Color mColor) {
-        this.mColor = mColor;
+    public void set_emmission(Color _emmission) {
+        this._emmission = _emmission;
     }
 
-    public Vector getNormal(Vector vector)
-    {
-        return vector.narmol();
+    public Material get_material() {
+        return _material;
     }
 
-    @Override
-    public String toString() {
-        return "Geometries.Geometry{" +
-                "mColor=" + mColor +
-                '}';
+    public void set_material(Material _material) {
+        this._material = _material;
     }
+
+    public abstract List<Point3D> FindIntersections (Ray ray);
+
+    public abstract Vector getNormal(Point3D point);
+
 }

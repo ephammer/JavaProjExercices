@@ -1,16 +1,31 @@
 package Primitives;
 
 /**
- * Created by kid0n on 21/03/2017.
+ * Created by ehammer on 21/03/2017.
  */
-public class Vector {
+public class Vector implements Comparable<Vector>{
 
     private Point3D origin;
-    private Point3D point3D;
 
     public Vector(Point3D point3D) {
+        origin = new Point3D(point3D);
+    }
+
+
+    public Vector()
+    {
         origin = new Point3D();
-        this.point3D = point3D;
+    }
+
+    public Vector(Point3D origin, Point3D point3D) {
+        this(point3D.getxCoordinate().getPoint() - origin.getxCoordinate().getPoint(),
+                point3D.getyCoordinate().getPoint() - origin.getyCoordinate().getPoint(),
+                point3D.getzCoordinate().getPoint() - origin.getzCoordinate().getPoint());
+    }
+
+    public Vector(Vector vector)
+    {
+        this.setOrigin(vector.getOrigin());
     }
 
     public Point3D getOrigin() {
@@ -21,111 +36,107 @@ public class Vector {
         this.origin = origin;
     }
 
-    public Vector(Coordinate xCoordinate, Coordinate yCoordinate, Coordinate zCoordinate) {
-        origin = new Point3D();
-        this.point3D = new Point3D(xCoordinate,yCoordinate,zCoordinate);
-    }
 
-    public Vector()
-    {
-        origin = new Point3D();
-        point3D = new Point3D();
-    }
-
-    public Vector(Point3D origin, Point3D point3D) {
-        this.origin = origin;
-        this.point3D = point3D;
-    }
-
-    public Vector(Vector vector)
-    {
-        this.setPoint3D(vector.getPoint3D());
-    }
-
-    public Point3D getPoint3D() {
-        return point3D;
-    }
-
-    public void setPoint3D(Point3D point3D) {
-        this.origin = new Point3D();
-        this.point3D = point3D;
+    public Vector(double xOrigin,  double yOrigin, double zOrigin){
+        origin =  new Point3D(new Coordinate(xOrigin),
+                new Coordinate(yOrigin),
+                new Coordinate(zOrigin));
     }
 
     public Vector add(Vector vector)
     {
-       point3D.add(vector.getPoint3D());
+       origin.add(vector.getOrigin());
 
        return this;
     }
 
     public Vector Substrct(Vector vector)
     {
-        point3D.Substrct(vector.getPoint3D());
+        origin.Substrct(vector);
 
         return this;
     }
 
-    public Vector scalarMult(double scalar)
+    public void scalarMult(double scalar)
     {
-        point3D = new Point3D(point3D.getxCoordinate().getPoint()*scalar,
-                point3D.getyCoordinate().getPoint()*scalar,
-                point3D.getzCoordinate().getPoint()*scalar);
+        this.origin.setxCoordinate(new Coordinate(
+                scalar * origin.getxCoordinate().getPoint()));
 
-        return this;
+        this.origin.setyCoordinate(new Coordinate(
+                scalar * origin.getyCoordinate().getPoint()));
+
+        this.origin.setzCoordinate(new Coordinate(
+                scalar * origin.getzCoordinate().getPoint()));
+
     }
 
     public double length()
     {
-        return origin.distance(point3D);
+        double x = this.getOrigin().getxCoordinate().getPoint();
+        double y = this.getOrigin().getyCoordinate().getPoint();
+        double z = this.getOrigin().getzCoordinate().getPoint();
+
+        return Math.sqrt(Math.pow(x, 2) +
+                Math.pow(y, 2) +
+                Math.pow(z, 2));
+
     }
 
-    public Vector narmol()
+    public void narmol()
     {
-        return this.scalarMult(1/length());
+        double x = this.getOrigin().getxCoordinate().getPoint();
+        double y = this.getOrigin().getyCoordinate().getPoint();
+        double z = this.getOrigin().getzCoordinate().getPoint();
+
+        double length = this.length();
+
+        if (length == 0)
+            throw new ArithmeticException();
+
+        this.setOrigin(new Point3D(x/length,
+                y/length,
+                z/length));
     }
 
     public Vector crossProduct(Vector vector)
     {
-        Vector newVector;
+        double x1 = this.getOrigin().getxCoordinate().getPoint();
+        double y1 = this.getOrigin().getyCoordinate().getPoint();
+        double z1 = this.getOrigin().getzCoordinate().getPoint();
 
-        Coordinate xCoordinate = new Coordinate(
-                (this.getPoint3D().getyCoordinate().getPoint()*
-                vector.getPoint3D().getzCoordinate().getPoint()) -
-                (this.getPoint3D().getzCoordinate().getPoint()*
-                        vector.getPoint3D().getyCoordinate().getPoint()));
+        double x2 = vector.getOrigin().getxCoordinate().getPoint();
+        double y2 = vector.getOrigin().getyCoordinate().getPoint();
+        double z2 = vector.getOrigin().getzCoordinate().getPoint();
 
-        Coordinate yCoordinate = new Coordinate(
-                (this.getPoint3D().getzCoordinate().getPoint()*
-                vector.getPoint3D().getxCoordinate().getPoint()) -
-                        (this.getPoint3D().getxCoordinate().getPoint()*
-                                vector.getPoint3D().getzCoordinate().getPoint()));
-
-        Coordinate zCoordinate = new Coordinate(
-                (this.getPoint3D().getxCoordinate().getPoint()*
-                vector.getPoint3D().getyCoordinate().getPoint()) -
-                        (this.getPoint3D().getyCoordinate().getPoint()*
-                                vector.getPoint3D().getxCoordinate().getPoint()));
-        newVector = new Vector(xCoordinate,yCoordinate,zCoordinate);
-
-        return newVector;
-
-    }
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Vector)) return false;
-
-        Vector vector = (Vector) o;
-
-        return getPoint3D() != null ? getPoint3D().equals(vector.getPoint3D()) : vector.getPoint3D() == null;
+        return new Vector(y1 * z2 - z1 * y2,
+                z1 * x2 - x1 * z2,
+                x1 * y2 - y1 * x2);
     }
 
+    public double dotProduct(Vector vector) {
+
+        double x1 = this.getOrigin().getxCoordinate().getPoint();
+        double y1 = this.getOrigin().getyCoordinate().getPoint();
+        double z1 = this.getOrigin().getzCoordinate().getPoint();
+
+        double x2 = vector.getOrigin().getxCoordinate().getPoint();
+        double y2 = vector.getOrigin().getyCoordinate().getPoint();
+        double z2 = vector.getOrigin().getzCoordinate().getPoint();
+
+        return x1 * x2 + y1 * y2 + z1 * z2;
+
+    }
 
     @Override
     public String toString() {
         return "Primitives.Vector{" +
                 "origin=" + origin +
-                ", point3D=" + point3D +
                 '}';
     }
+
+    @Override
+    public int compareTo(Vector vector) {
+        return this.origin.compareTo(vector.origin);
+    }
+
 }

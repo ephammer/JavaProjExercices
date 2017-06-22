@@ -3,7 +3,7 @@ package Primitives;
 /**
  * Created by Emmanuel Elnekave on 20/03/2017.
  */
-public class Point2D {
+public class Point2D implements Comparable<Point2D>{
 
     private Coordinate xCoordinate;
     private Coordinate yCoordinate;
@@ -66,4 +66,11 @@ public class Point2D {
         return getyCoordinate() != null ? getyCoordinate().equals(point2D.getyCoordinate()) : point2D.getyCoordinate() == null;
     }
 
+    @Override
+    public int compareTo(Point2D point2D) {
+        if (this.xCoordinate.compareTo(point2D.xCoordinate) == 0 &&
+                this.yCoordinate.compareTo(point2D.yCoordinate) == 0)
+            return 0;
+        return 1;
+    }
 }
