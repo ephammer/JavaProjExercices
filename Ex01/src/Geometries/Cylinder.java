@@ -7,7 +7,7 @@ import Primitives.Vector;
 import java.util.List;
 
 /**
- * Created by ehammer on 15/06/2017.
+ * Created by ephammer on 15/06/2017.
  */
 public class Cylinder extends RadialGeometry{
 

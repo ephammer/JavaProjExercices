@@ -6,7 +6,7 @@ import Primitives.Ray;
 import Primitives.Vector;
 
 /**
- * Created by ehammer on 15/06/2017.
+ * Created by ephammer on 15/06/2017.
  */
 public class Camera {
     Point3D _P0;

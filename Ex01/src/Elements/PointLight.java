@@ -6,7 +6,7 @@ import Primitives.Vector;
 import java.awt.*;
 
 /**
- * Created by ehammer on 19/06/2017.
+ * Created by ephammer on 19/06/2017.
  */
 public class PointLight extends Light  implements LightSource{
 

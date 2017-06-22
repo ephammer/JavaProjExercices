@@ -7,7 +7,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by ehammer on 19/06/2017.
+ * Created by ephammer on 19/06/2017.
  */
 public class ImageWriter {
 

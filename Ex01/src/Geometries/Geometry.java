@@ -10,7 +10,7 @@ import java.util.*;
 import java.util.List;
 
 /**
- * Created by ehammer on 21/03/2017.
+ * Created by ephammer on 21/03/2017.
  */
 public abstract class Geometry {
 

@@ -1,7 +1,7 @@
 package Primitives;
 
 /**
- * Created by ehammer on 21/03/2017.
+ * Created by ephammer on 21/03/2017.
  */
 public class Ray extends Vector {
 

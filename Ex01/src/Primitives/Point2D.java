@@ -1,7 +1,7 @@
 package Primitives;
 
 /**
- * Created by Emmanuel Elnekave on 20/03/2017.
+ * Created by Emmanuel Elnekave  on 20/03/2017.
  */
 public class Point2D implements Comparable<Point2D>{
 
