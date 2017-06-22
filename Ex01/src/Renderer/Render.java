@@ -21,14 +21,10 @@ public class Render {
     private Scene _scene;
     private ImageWriter _imageWriter;
 
-    // ***************** Constructors ********************** //
-
     public Render(ImageWriter imageWriter, Scene scene){
         _imageWriter = new ImageWriter(imageWriter);
         _scene = new Scene (scene);
     }
-
-    // ***************** Operations ******************** //
 
     public void renderImage(){
 
@@ -131,10 +127,6 @@ public class Render {
 
         Color I0 = addColors(inherentColors, lightReflected);
 
-
-        //**// Recursive calls
-
-        // Recursive call for a reflected ray
         Ray reflectedRay = constructReflectedRay(geometry.getNormal(point), point, inRay);
         Entry<Geometry, Point3D> reflectedEntry = findClosesntIntersection(reflectedRay);
         Color reflected = new Color(0, 0, 0);
@@ -144,7 +136,6 @@ public class Render {
             reflected = new Color ((int)(reflected.getRed() * kr), (int)(reflected.getGreen() * kr),(int)(reflected.getBlue() * kr));
         }
 
-        // Recursive call for a refracted ray
         Ray refractedRay = constructRefractedRay(geometry, point, inRay);
         Entry<Geometry, Point3D> refractedEntry = findClosesntIntersection(refractedRay);
         Color refracted = new Color(0, 0, 0);
@@ -153,9 +144,6 @@ public class Render {
             double kt = geometry.get_material().get_Kt();
             refracted = new Color ((int)(refracted.getRed() * kt), (int)(refracted.getGreen() * kt),(int)(refracted.getBlue() * kt));
         }
-
-
-        //**// End of recursive calls
 
         Color envColors = addColors(reflected, refracted);
 
@@ -173,8 +161,6 @@ public class Render {
         if (geometry instanceof FlatGeometry){
             return new Ray (point, inRay.get_direction());
         } else {
-            // Here, Snell's law can be implemented.
-            // The refraction index of both materials had to be derived
             return new Ray (point, inRay.get_direction());
         }
 
@@ -212,7 +198,6 @@ public class Render {
         Ray lightRay = new Ray(geometryPoint, lightDirection);
         Map<Geometry, List<Point3D>> intersectionPoints = getSceneRayIntersections(lightRay);
 
-        // Flat geometry cannot self intersect
         if (geometry instanceof FlatGeometry){
             intersectionPoints.remove(geometry);
         }
@@ -239,7 +224,7 @@ public class Render {
 
         double k = 0;
 
-        if (v.dotProduct(R) > 0) // prevents glowing at edges
+        if (v.dotProduct(R) > 0)
             k = ks * Math.pow(v.dotProduct(R), shininess);
 
         return new Color ((int)(lightIntensity.getRed()  * k),

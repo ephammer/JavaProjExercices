@@ -98,8 +98,6 @@ public class Triangle extends Geometry{
     public List<Point3D> FindIntersections(Ray ray) {
         List<Point3D> intersectionPoints = new ArrayList<Point3D>(1);
 
-        // Intersecting the triangular plane
-
         Point3D P0 = ray.get_POO();
 
         Vector N = getNormal(null);
@@ -110,24 +108,20 @@ public class Triangle extends Geometry{
 
         Point3D intersectionPlane = plane.FindIntersections(ray).get(0);
 
-        // Checking if the interseculating point is bounded by the triangle
         Vector P_P0 = new Vector(P0, intersectionPlane);
 
-        // Checking 1/3 triangular side
         Vector V1_1 = new Vector(P0, this._p1);
         Vector V2_1 = new Vector(P0, this._p2);
         Vector N1 = V1_1.crossProduct(V2_1);
         N1.narmol();
         double S1 = -P_P0.dotProduct(N1);
 
-        // Checking 2/3 triangular side
         Vector V1_2 = new Vector(P0, this._p2);
         Vector V2_2 = new Vector(P0, this._p3);
         Vector N2 = V1_2.crossProduct(V2_2);
         N2.narmol();
         double S2 = -P_P0.dotProduct(N2);
 
-        // Checking 1/3 triangular side
         Vector V1_3 = new Vector(P0, this._p3);
         Vector V2_3 = new Vector(P0, this._p1);
         Vector N3 = V1_3.crossProduct(V2_3);
