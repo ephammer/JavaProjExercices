@@ -91,7 +91,7 @@ public class Render {
         }
 
         Color ambientLight = _scene.get_ambientLight().getIntensity();
-        Color emissionLight = geometry.get_emmission();
+        Color emissionLight = geometry.get_emission();
 
         Color inherentColors = addColors(ambientLight, emissionLight);
 
@@ -109,16 +109,16 @@ public class Render {
 
 
                 Color lightDiffuse = calcDiffusiveComp(geometry.get_material().get_Kd(),
-                        geometry.getNormal(point),
+                        geometry.get_normal(point),
                         light.getL(point),
                         lightIntensity);
 
 
                 Color lightSpecular = calcSpecularComp(geometry.get_material().get_Ks(),
                         new Vector(point, _scene.get_camera().get_P0()),
-                        geometry.getNormal(point),
+                        geometry.get_normal(point),
                         light.getL(point),
-                        geometry.get_material().get_nShininess(),
+                        geometry.get_shininess(),
                         lightIntensity);
 
                 lightReflected = addColors(lightDiffuse, lightSpecular);
@@ -127,7 +127,7 @@ public class Render {
 
         Color I0 = addColors(inherentColors, lightReflected);
 
-        Ray reflectedRay = constructReflectedRay(geometry.getNormal(point), point, inRay);
+        Ray reflectedRay = constructReflectedRay(geometry.get_normal(point), point, inRay);
         Entry<Geometry, Point3D> reflectedEntry = findClosesntIntersection(reflectedRay);
         Color reflected = new Color(0, 0, 0);
         if (reflectedEntry != null){
@@ -154,8 +154,8 @@ public class Render {
 
     private Ray constructRefractedRay(Geometry geometry, Point3D point, Ray inRay) {
 
-        Primitives.Vector normal = geometry.getNormal(point);
-        normal.scalarMult(-2);
+        Primitives.Vector normal = geometry.get_normal(point);
+        normal.scale(-2);
         point.add(normal);
 
         if (geometry instanceof FlatGeometry){
@@ -169,13 +169,13 @@ public class Render {
     private Ray constructReflectedRay(Vector normal, Point3D point, Ray inRay) {
 
         Vector l = inRay.get_direction();
-        l.narmol();
+        l.normalize();
 
-        normal.scalarMult(-2 * l.dotProduct(normal));
+        normal.scale(-2 * l.dotProduct(normal));
         l.add(normal);
 
         Vector R = new Vector(l);
-        R.narmol();
+        R.normalize();
 
         point.add(normal);
 
@@ -187,12 +187,12 @@ public class Render {
     private boolean occluded(LightSource light, Point3D point, Geometry geometry) {
 
         Vector lightDirection = light.getL(point);
-        lightDirection.scalarMult(-1);
-        lightDirection.narmol();
+        lightDirection.scale(-1);
+        lightDirection.normalize();
 
         Point3D geometryPoint = new Point3D(point);
-        Vector epsVector = new Vector(geometry.getNormal(point));
-        epsVector.scalarMult(2);
+        Vector epsVector = new Vector(geometry.get_normal(point));
+        epsVector.scale(2);
         geometryPoint.add(epsVector);
 
         Ray lightRay = new Ray(geometryPoint, lightDirection);
@@ -213,14 +213,14 @@ public class Render {
     private Color calcSpecularComp(double ks, Vector v, Vector normal,
                                    Vector l, double shininess, Color lightIntensity) {
 
-        v.narmol();
-        normal.narmol();
-        l.narmol();
+        v.normalize();
+        normal.normalize();
+        l.normalize();
 
-        normal.scalarMult(-2 * l.dotProduct(normal));
+        normal.scale(-2 * l.dotProduct(normal));
         l.add(normal);
         Vector R = new Vector(l);
-        R.narmol();
+        R.normalize();
 
         double k = 0;
 
@@ -235,8 +235,8 @@ public class Render {
     private Color calcDiffusiveComp(double kd, Vector normal,
                                     Vector l, Color lightIntensity) {
 
-        normal.narmol();
-        l.narmol();
+        normal.normalize();
+        l.normalize();
 
         double k = Math.abs(kd * normal.dotProduct(l));
 

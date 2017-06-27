@@ -2,10 +2,10 @@ package UnitTests;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+
 
 /**
- * Created by kid0n on 23/03/2017.
+ * Created by ehammer on 23/03/2017.
  */
 public class Point3DTest {
     @Test

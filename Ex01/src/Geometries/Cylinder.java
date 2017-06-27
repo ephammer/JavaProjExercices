@@ -34,19 +34,19 @@ public class Cylinder extends RadialGeometry{
 
 
     public Point3D get_axisPoint() {
-        return _axisPoint;
+        return new Point3D(_axisPoint);
     }
 
     public void set_axisPoint(Point3D _axisPoint) {
-        this._axisPoint = _axisPoint;
+        this._axisPoint = new Point3D(_axisPoint);
     }
 
     public Vector get_axisDirection() {
-        return _axisDirection;
+        return new Vector(_axisDirection);
     }
 
     public void set_axisDirection(Vector _axisDirection) {
-        this._axisDirection = _axisDirection;
+        this._axisDirection = new Vector(_axisDirection);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class Cylinder extends RadialGeometry{
     }
 
     @Override
-    public Vector getNormal(Point3D point) {
+    public Vector get_normal(Point3D point) {
         return null;
     }
 }

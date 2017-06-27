@@ -3,75 +3,37 @@ package Primitives;
 /**
  * Created by Emmanuel Elnekave  on 20/03/2017.
  */
-public class Coordinate implements Comparable<Coordinate> {
 
-    private double point;
+public class Coordinate implements Comparable<Coordinate>{
 
-    public Coordinate()
-    {
-        setPoint(0);
-    }
+    private double _coordinate;
 
-    public Coordinate(double point) {
-        try {
-            setPoint(point);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    // ***************** Constructors ********************** //
 
-    public Coordinate(Coordinate coordinate){
-        try
-        {
-            coordinate.setPoint(this.getPoint());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    public double getPoint() {
-        return point;
-    }
+    public Coordinate()                      { this._coordinate = 0.0;                    }
+    public Coordinate(double coordinate)     { this._coordinate = coordinate;             }
+    public Coordinate(Coordinate coordinate) { this._coordinate = coordinate._coordinate; }
 
-    public void setPoint(double point) {
-        try {
-            this.point = point;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    // ***************** Getters/Setters ********************** //
 
-    @Override
-    public String toString() {
-        return "Primitives.Coordinate{" +
-                "point=" + point +
-                '}';
-    }
+    public double getCoordinate()                {	return _coordinate;	          }
+    public void setCoordinate(double coordinate) { this._coordinate = coordinate; }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Coordinate)) return false;
-
-        Coordinate that = (Coordinate) o;
-
-        return Double.compare(that.getPoint(), getPoint()) == 0;
-    }
-
-    public Coordinate add(Coordinate coordinate)
-    {
-        point += coordinate.getPoint();
-
-        return this;
-    }
-
-    public Coordinate Substrct(Coordinate coordinate)
-    {
-        point -= coordinate.getPoint();
-        return this;
-    }
+    // ***************** Administration  ******************** //
 
     @Override
     public int compareTo(Coordinate coordinate) {
-        return Double.compare(this.point, coordinate.point);
+        return Double.compare(this._coordinate, coordinate._coordinate);
     }
+
+    // ***************** Operations ******************** //
+
+    public void add (Coordinate coordinate ){
+        this._coordinate += coordinate._coordinate;
+    }
+
+    public void subtract(Coordinate coordinate) {
+        this._coordinate -= coordinate._coordinate;
+    }
+
 }

@@ -11,8 +11,6 @@ public class Material {
     private double _Kt;
     private double _n;
 
-    private double _nShininess = 1;
-
     public Material(Material material){
         this._Kd = material._Kd;
         this._Ks = material._Ks;
@@ -27,14 +25,6 @@ public class Material {
         _Kr = 0;
         _Kt = 0;
         _n  = 1;
-    }
-
-    public double get_nShininess() {
-        return _nShininess;
-    }
-
-    public void set_nShininess(double _nShininess) {
-        this._nShininess = _nShininess;
     }
 
     public double get_Kd() {

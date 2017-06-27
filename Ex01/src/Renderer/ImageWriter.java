@@ -22,6 +22,8 @@ public class ImageWriter {
 
     private String _imageName;
 
+    // ***************** Constructors ********************** //
+
 
     public ImageWriter(String imageName, int width, int height, int Ny, int Nx){
 
@@ -50,6 +52,9 @@ public class ImageWriter {
                 _imageWidth, _imageHeight, BufferedImage.TYPE_INT_RGB);;
     }
 
+    // ***************** Getters/Setters ********************** //
+
+
     public int getWidth()  { return _imageWidth;  }
     public int getHeight() { return _imageHeight; }
 
@@ -58,6 +63,8 @@ public class ImageWriter {
 
     public void setNy(int _Ny) { this._Ny = _Ny; }
     public void setNx(int _Nx) { this._Nx = _Nx; }
+
+    // ***************** Operations ******************** //
 
     public void writeToimage(){
 

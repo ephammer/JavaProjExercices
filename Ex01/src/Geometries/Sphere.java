@@ -37,11 +37,11 @@ public class Sphere extends RadialGeometry {
     }
 
     public Point3D get_center() {
-        return _center;
+        return new Point3D(_center);
     }
 
     public void set_center(Point3D _center) {
-        this._center = _center;
+        this._center =  new Point3D(_center);
     }
 
     @Override
@@ -53,6 +53,7 @@ public class Sphere extends RadialGeometry {
 
     @Override
     public List<Point3D> FindIntersections(Ray ray) {
+
         List<Point3D> intersectionPoints= new ArrayList<>(2);
 
         Vector L = new Vector(ray.get_POO(), this.get_center());
@@ -69,7 +70,7 @@ public class Sphere extends RadialGeometry {
 
         if (t1 >= 0){
             Vector V = ray.get_direction();
-            V.scalarMult(t1);
+            V.scale(t1);
             Point3D P1 = ray.get_POO();
             P1.add(V);
             intersectionPoints.add(P1);
@@ -77,7 +78,7 @@ public class Sphere extends RadialGeometry {
 
         if (t2 >= 0){
             Vector V = ray.get_direction();
-            V.scalarMult(t2);
+            V.scale(t2);
             Point3D P2 = ray.get_POO();
             P2.add(V);
             intersectionPoints.add(P2);
@@ -87,10 +88,10 @@ public class Sphere extends RadialGeometry {
     }
 
     @Override
-    public Vector getNormal(Point3D point) {
+    public Vector get_normal(Point3D point) {
 
         Vector N = new Vector (_center, point);
-        N.narmol();
+        N.normalize();
         return N;
     }
 }

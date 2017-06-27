@@ -3,95 +3,72 @@ package Primitives;
 /**
  * Created by ephammer  on 21/03/2017.
  */
-public class Point3D extends Point2D {
 
-    private Coordinate zCoordinate;
+public class Point3D extends Point2D{
 
-    public Point3D(Coordinate xCoordinate, Coordinate yCoordinate, Coordinate zCoordinate) {
-        super(xCoordinate, yCoordinate);
-        this.zCoordinate = zCoordinate;
+    private Coordinate _z;
+
+    public Point3D(){
+        _z = new Coordinate();
     }
 
-    public Point3D() {
-        super();
-        this.zCoordinate = new Coordinate(0);
+    public Point3D(Coordinate x, Coordinate y, Coordinate z){
+        super(x, y);
+        _z = new Coordinate(z);
     }
 
-    public Point3D(double xPoint, double yPoint, double zPoint) {
-        super(xPoint, yPoint);
-        this.zCoordinate = new Coordinate(zPoint);
+    public Point3D(double x, double y, double z){
+        super(new Coordinate(x), new Coordinate(y));
+        _z = new Coordinate(z);
     }
 
-    public Point3D(Point3D point3D)
-    {
-        super(point3D.getxCoordinate(),point3D.getyCoordinate());
-        this.zCoordinate = point3D.zCoordinate;
+    public Point3D(Point3D point3D){
+        super(point3D._x, point3D._y);
+        _z = point3D.getZ();
     }
 
-    public Coordinate getzCoordinate() {
-        return zCoordinate;
-    }
-
-    public void setzCoordinate(Coordinate zCoordinate) {
-        this.zCoordinate = zCoordinate;
-    }
-
+    public Coordinate getZ()        { return new Coordinate(_z);    }
+    public void setZ(Coordinate _z) { this._z = new Coordinate(_z);	}
 
     public int compareTo(Point3D point3D) {
 
         if (((Point2D)this).compareTo((Point2D)point3D) == 0)
-            if (this.zCoordinate.compareTo(point3D.getzCoordinate()) == 0)
+            if (this._z.compareTo(point3D._z) == 0)
                 return 0;
         return 1;
     }
 
-
     @Override
     public String toString() {
-        return  "Primitives.Point3D{" +
+        return "Point3D{" +
                 super.toString() +
-                "zCoordinate=" + zCoordinate +
+                "_z=" + _z +
                 '}';
     }
 
-    public Point3D add(Point3D point3D)
-    {
-        this.setxCoordinate(this.getxCoordinate().add(point3D.getxCoordinate()));
-        this.setyCoordinate(this.getyCoordinate().add(point3D.getyCoordinate()));
-        zCoordinate.add(point3D.getzCoordinate());
-
-        return this;
-    }
     public void add(Vector vector) {
 
-        this.getxCoordinate().add(vector.getOrigin().getxCoordinate());
-        this.getyCoordinate().add(vector.getOrigin().getyCoordinate());
-        this.getzCoordinate().add(vector.getOrigin().getzCoordinate());
+        this._x.add(vector.getHead().getX());
+        this._y.add(vector.getHead().getY());
+        this._z.add(vector.getHead().getZ());
 
     }
 
-    public Point3D Substrct(Point3D point3D)
-    {
-        this.setxCoordinate(this.getxCoordinate().Substrct(point3D.getxCoordinate()));
-        this.setyCoordinate(this.getyCoordinate().Substrct(point3D.getyCoordinate()));
-        zCoordinate.Substrct(point3D.getzCoordinate());
+    public void subtract(Vector vector) {
 
-        return this;
-    }
-    public void Substrct(Vector vector) {
-
-        this.getxCoordinate().Substrct(vector.getOrigin().getxCoordinate());
-        this.getyCoordinate().Substrct(vector.getOrigin().getyCoordinate());
-        this.getzCoordinate().Substrct(vector.getOrigin().getzCoordinate());
+        this._x.subtract(vector.getHead().getX());
+        this._y.subtract(vector.getHead().getY());
+        this._z.subtract(vector.getHead().getZ());
 
     }
 
-
-    public double distance(Point3D point3D)
-    {
+    public double distance(Point3D point){
         return Math.sqrt(
-                Math.pow(getxCoordinate().getPoint() - point3D.getxCoordinate().getPoint(), 2) +
-                        Math.pow(getyCoordinate().getPoint() - point3D.getyCoordinate().getPoint(), 2) +
-                        Math.pow(getzCoordinate().getPoint() - point3D.getzCoordinate().getPoint(), 2));
+                Math.pow(this._x.getCoordinate() - point.getX().getCoordinate(), 2) +
+                Math.pow(this._y.getCoordinate() - point.getY().getCoordinate(), 2) +
+                Math.pow(this._z.getCoordinate() - point.getZ().getCoordinate(), 2)
+        );
     }
+
+
 }

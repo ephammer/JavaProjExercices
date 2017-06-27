@@ -6,7 +6,6 @@ import Primitives.Ray;
 import Primitives.Vector;
 
 import java.awt.*;
-import java.util.*;
 import java.util.List;
 
 /**
@@ -15,15 +14,23 @@ import java.util.List;
 public abstract class Geometry {
 
     private Material _material = new Material();
+    private double _shininess = 1;
+    private Color _emission = new Color(0, 0, 0);
 
-    private Color _emmission = new Color(0, 0, 0);
-
-    public Color get_emmission() {
-        return _emmission;
+    public double get_shininess() {
+        return _shininess;
     }
 
-    public void set_emmission(Color _emmission) {
-        this._emmission = _emmission;
+    public void set_shininess(double _shininess) {
+        this._shininess = _shininess;
+    }
+
+    public Color get_emission() {
+        return _emission;
+    }
+
+    public void set_emission(Color _emission) {
+        this._emission = _emission;
     }
 
     public Material get_material() {
@@ -36,6 +43,11 @@ public abstract class Geometry {
 
     public abstract List<Point3D> FindIntersections (Ray ray);
 
-    public abstract Vector getNormal(Point3D point);
+    public abstract Vector get_normal(Point3D point);
+
+    public void set_Ks(double ks) { _material.set_Ks(ks); }
+    public void set_Kd(double kd) { _material.set_Kd(kd); }
+    public void set_Kr(double Kr) { _material.set_Kr(Kr); }
+    public void set_Kt(double Kt) { _material.set_Kt(Kt); }
 
 }

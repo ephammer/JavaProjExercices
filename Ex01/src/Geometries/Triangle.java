@@ -11,7 +11,7 @@ import java.util.Map;
 /**
  * Created by ephammer on 15/06/2017.
  */
-public class Triangle extends Geometry{
+public class Triangle extends Geometry implements FlatGeometry{
     Point3D _p1;
     Point3D _p2;
     Point3D _p3;
@@ -62,27 +62,27 @@ public class Triangle extends Geometry{
 
 
     public Point3D get_p1() {
-        return _p1;
+        return new Point3D(_p1);
     }
 
     public void set_p1(Point3D _p1) {
-        this._p1 = _p1;
+        this._p1 = new Point3D(_p1);
     }
 
     public Point3D get_p2() {
-        return _p2;
+        return new Point3D(_p2);
     }
 
     public void set_p2(Point3D _p2) {
-        this._p2 = _p2;
+        this._p2 = new Point3D(_p2);
     }
 
     public Point3D get_p3() {
-        return _p3;
+        return new Point3D(_p3);
     }
 
     public void set_p3(Point3D _p3) {
-        this._p3 = _p3;
+        this._p3 = new Point3D(_p3);
     }
 
     @Override
@@ -96,11 +96,12 @@ public class Triangle extends Geometry{
 
     @Override
     public List<Point3D> FindIntersections(Ray ray) {
-        List<Point3D> intersectionPoints = new ArrayList<Point3D>(1);
+
+        List<Point3D> intersectionPoints = new ArrayList<>(1);
 
         Point3D P0 = ray.get_POO();
 
-        Vector N = getNormal(null);
+        Vector N = get_normal(null);
         Plane plane = new Plane(N, _p3);
 
         if (plane.FindIntersections(ray).isEmpty())
@@ -113,19 +114,19 @@ public class Triangle extends Geometry{
         Vector V1_1 = new Vector(P0, this._p1);
         Vector V2_1 = new Vector(P0, this._p2);
         Vector N1 = V1_1.crossProduct(V2_1);
-        N1.narmol();
+        N1.normalize();
         double S1 = -P_P0.dotProduct(N1);
 
         Vector V1_2 = new Vector(P0, this._p2);
         Vector V2_2 = new Vector(P0, this._p3);
         Vector N2 = V1_2.crossProduct(V2_2);
-        N2.narmol();
+        N2.normalize();
         double S2 = -P_P0.dotProduct(N2);
 
         Vector V1_3 = new Vector(P0, this._p3);
         Vector V2_3 = new Vector(P0, this._p1);
         Vector N3 = V1_3.crossProduct(V2_3);
-        N3.narmol();
+        N3.normalize();
         double S3 = -P_P0.dotProduct(N3);
 
         if (((S1 > 0) && (S2 > 0) && (S3 > 0)) ||
@@ -138,13 +139,13 @@ public class Triangle extends Geometry{
     }
 
     @Override
-    public Vector getNormal(Point3D point) {
+    public Vector get_normal(Point3D point) {
         Vector U = new Vector (_p1, _p2);
         Vector V = new Vector (_p1, _p3);
         Vector N = new Vector (U.crossProduct(V));
 
-        N.narmol();
-        N.scalarMult(-1);
+        N.normalize();
+        N.scale(-1);
         return N;
 
     }
